@@ -39,5 +39,21 @@ export const Query={
     practicas:async():Promise<PracticaModelType[]>=>{
         const practica=await PracticaModel.find().exec();
         return practica;
+    },
+    horario:async(_:unknown, args:{dia:string}):Promise<AsignaturaModelType[]>=>{
+        const {dia}=args;
+        switch(dia){
+            case "Lunes":
+                console.log("Lunes");
+                break;
+            case "Martes":
+                console.log("Martes");
+                break;
+            default:
+                console.log("Nombre del dia incorrecto");
+                
+                
+                
+        }
     }
 }
