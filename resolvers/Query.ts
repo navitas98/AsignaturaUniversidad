@@ -42,15 +42,47 @@ export const Query={
     },
     horario:async(_:unknown, args:{dia:string}):Promise<AsignaturaModelType[]>=>{
         const {dia}=args;
+        let datos;
         switch(dia){
             case "Lunes":
-                console.log("Lunes");
-                break;
+                const IA=await AsignaturaModel.findById("65b75f4513bee51d8fe89cf0");
+                if(!IA)throw new Error("La asignatura no existe");
+                datos=[];
+                datos.push(IA);
+                return datos;
             case "Martes":
-                console.log("Martes");
-                break;
+                const disenoautomaticodesistemas=await AsignaturaModel.findById("65b7604d13bee51d8fe89cf3");
+                if(!disenoautomaticodesistemas)throw new Error("La asignatura no existe")
+                const estructura= await AsignaturaModel.findById("65b760ca22fecf1fd460d0ca");
+                if(!estructura)throw new Error("La asignatura no existe")             
+                 datos=[];
+                datos.push(disenoautomaticodesistemas);
+                datos.push(estructura);
+                return datos
+            case "Miercoles":
+                const  programacion=await AsignaturaModel.findById("65b7621d22fecf1fd460d0cd");
+                if(!programacion)throw new Error("La asignatura no existe");
+                 datos=[];
+                 datos.push(programacion);
+                 return datos;
+            case "Jueves":
+                const redes=await AsignaturaModel.findById("65b7631222fecf1fd460d0d0");
+                if(!redes)throw new Error("La asignatura no existe");
+                datos=[];
+                datos.push(redes);
+                return datos;   
+            case "sin asignar":
+                const SO=await AsignaturaModel.findById("65b763e522fecf1fd460d0d4");
+                if(!SO)throw new Error("La asignatura no existe");
+                const Arquitectura=await AsignaturaModel.findById("65b763f622fecf1fd460d0d7")
+                if(!Arquitectura)throw new Error("La asignatura no existe");
+                datos=[];
+                datos.push(SO);
+                datos.push(Arquitectura);
+                return datos;
+            
             default:
-                console.log("Nombre del dia incorrecto");
+                return [];
                 
                 
                 
