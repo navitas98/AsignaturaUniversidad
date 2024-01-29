@@ -106,6 +106,22 @@ export const Mutation={
               });
         }
         return ExamenUP
+    },
+    horario:async(_:unknown, args:{dia:string}):Promise<AsignaturaModelType[]>=>{
+        const {dia}=args;
+        switch(dia){
+            case "Lunes":
+                console.log("Lunes");
+                break;
+            case "Martes":
+                console.log("Martes");
+                break;
+            default:
+                console.log("Nombre del dia incorrecto");
+                
+                
+                
+        }
     }
     
 }

@@ -60,5 +60,7 @@ type Query{
     temas:[Tema!]!
     examenes:[Examen!]!
     practicas:[Practica!]!
+
+    horario(dia:String!):[Asignatura!]!
 }
 `
