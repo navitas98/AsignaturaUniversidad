@@ -4,6 +4,7 @@ import { AsignaturaModel, AsignaturaModelType } from "../DB/Asignatura.ts"
 import { ExamenModel, ExamenModelType } from "../DB/Examen.ts";
 import { PracticaModel, PracticaModelType } from "../DB/Practica.ts";
 import { TemaModel, TemaModelType } from "../DB/Tema.ts";
+import { TareaModel, TareaModelType } from "../DB/Tarea.ts";
 export const Mutation={
     nuevaAsignatura:async(_:unknown, args:{nombre:string, clase:string, horario:string, profesor:string, correo:string, parcial:string, final:string}):Promise<AsignaturaModelType>=>{
         const {nombre, clase, horario, profesor, correo, parcial, final}=args;
@@ -59,6 +60,21 @@ export const Mutation={
         const nuevaPractica=await PracticaModel.create(Practica);
         return nuevaPractica;
     },
+    nuevaTarea:async(_:unknown,args:{nombre:string, asignatura:string, dia:string}):Promise<TareaModelType>=>{
+        const {nombre, asignatura, dia}=args;
+        const asignaturaID=await AsignaturaModel.findOne({asignatura});
+        if(!asignaturaID)throw new Error("El nombre de la asignatura no existe")
+        const Tarea={
+            nombre,
+            dia,
+            realizada:false,
+            asignatura:asignaturaID._id
+        }
+        const nuevaTarea=await TareaModel.create(Tarea);
+        return nuevaTarea;
+    }
+
+    ,
     ModificarAsignatura:async(_:unknown, args:{nombre:string, clase:string, horario:string, profesor:string, correo:string, parcial:string, final:string, asignatura:string}):Promise<AsignaturaModelType>=>{
         const {nombre, clase, horario, profesor, correo, parcial, final, asignatura}=args;
         const AsignaturaID=await AsignaturaModel.findOne({nombre:asignatura});

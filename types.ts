@@ -36,3 +36,11 @@ export type Practicas={
     enunciado_practica:string,
     asignatura:Asignatura
 }
+export type Tarea={
+    id:string,
+    nombre:string,
+    realizada:boolean,
+    asignatura:Asignatura
+    dia:string
+
+}
