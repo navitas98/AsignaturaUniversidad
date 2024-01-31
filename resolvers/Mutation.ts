@@ -139,9 +139,31 @@ export const Mutation={
     },
     BorrarAsignatura:async(_:unknown, args:{nombre:string}):Promise<AsignaturaModelType>=>{
         const asignaturaID=await AsignaturaModel.findOne({nombre:args.nombre});
-        if(!asignaturaID)throw new Error("El nombre de la asignatura no exoste")
+        if(!asignaturaID)throw new Error("El nombre de la asignatura no existe")
         const asignaturaE=await AsignaturaModel.findByIdAndDelete(asignaturaID._id)
         if(!asignaturaE)throw new Error("error")
         return asignaturaE
+    },
+    BorrarTema:async(_:unknown,args:{nombre:string}):Promise<TemaModelType>=>{
+        const temaID=await TemaModel.findOne({nombre:args.nombre});
+        if(!temaID)throw new Error("EL nombre del tema no existe");
+        const temaB=await TemaModel.findOneAndDelete(temaID._id);
+        if(!temaB)throw new Error("error");
+        return temaB;
+    },
+    BorrarExamen:async(_:unknown,args:{nombre:string}):Promise<ExamenModelType>=>{
+        const examen=await ExamenModel.findOne({nombre:args.nombre});
+        if(!examen)throw new Error("El nombre del examen no existe");
+        const examenB=await ExamenModel.findByIdAndDelete(examen._id);
+        if(!examenB)throw new Error("error")
+        return examenB;
+    },
+    BorrarPractica:async(_:unknown, args:{nombre:string}):Promise<PracticaModelType>=>{
+        const practica=await PracticaModel.findOne({nombre:args.nombre});
+        if(!practica)throw new Error("El nombre de la practica no existe");
+        const practicaB=await PracticaModel.findByIdAndDelete(practica._id);
+        if(!practicaB)throw new Error("Error");
+        return practicaB;
     }
+
 }

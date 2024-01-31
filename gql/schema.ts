@@ -59,8 +59,8 @@ type Mutation{
     BorrarAsignatura(nombre:String!):Asignatura!
     BorrarTema(nombre:String!):Tema!
     BorrarExamen(nombre:String!):Examen!
-    borrarPractica(nombre:String!):Practica!
-    borrarTareas:[Tarea!]!
+    BorrarPractica(nombre:String!):Practica!
+    BorrarTarea(nombre:String!):Tarea!
 }
 type Query{
     test:String!
