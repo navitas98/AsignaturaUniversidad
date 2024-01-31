@@ -41,6 +41,6 @@ export type Tarea={
     nombre:string,
     realizada:boolean,
     asignatura:Asignatura
-    dia:string
+    dia?:string
 
 }

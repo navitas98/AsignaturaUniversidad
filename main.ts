@@ -8,6 +8,7 @@ import { Examen } from "./resolvers/Examen.ts";
 import { Practica } from "./resolvers/Practica.ts";
 import { Tema } from "./resolvers/Tema.ts";
 import { Asignatura } from "./resolvers/Asignatura.ts";
+import { Tarea } from "./resolvers/Tareas.ts";
 const MONGO_URL = Deno.env.get("MONGO_URL");
 if (!MONGO_URL) {
   throw new Error("Please provide a MongoDB connection string");
@@ -26,7 +27,8 @@ const server = new ApolloServer({
     Practica,
     Examen,
     Tema,
-    Asignatura
+    Asignatura,
+    Tarea
   },
 });
 

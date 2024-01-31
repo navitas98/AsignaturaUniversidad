@@ -1,6 +1,7 @@
 import { AsignaturaModel, AsignaturaModelType } from "../DB/Asignatura.ts";
 import { ExamenModel, ExamenModelType } from "../DB/Examen.ts";
 import { PracticaModel, PracticaModelType } from "../DB/Practica.ts";
+import { TareaModel, TareaModelType } from "../DB/Tarea.ts";
 import { TemaModel, TemaModelType } from "../DB/Tema.ts";
 
 export const Query={
@@ -24,6 +25,12 @@ export const Query={
         if(!examen)throw new Error("No existe ningun examen con ese nombre");
         return examen
     },
+    tarea:async(_:unknown, args:{nombre:string}):Promise<TareaModelType>=>{
+        const tarea=await TareaModel.findOne({nombre:args.nombre});
+        if(!tarea)throw new Error("No existe la tarea de ese nombre")
+        return tarea;
+    }
+    ,
     asignaturas:async():Promise<AsignaturaModelType[]>=>{
         const asignatura=await AsignaturaModel.find().exec();
         return asignatura;
@@ -39,5 +46,9 @@ export const Query={
     practicas:async():Promise<PracticaModelType[]>=>{
         const practica=await PracticaModel.find().exec();
         return practica;
-    }
+    },
+    tareas:async():Promise<TareaModelType[]>=>{
+        const tarea=await TareaModel.find().exec();
+        return tarea;
+    }   
 }

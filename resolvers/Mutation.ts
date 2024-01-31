@@ -62,7 +62,7 @@ export const Mutation={
     },
     nuevaTarea:async(_:unknown,args:{nombre:string, asignatura:string, dia:string}):Promise<TareaModelType>=>{
         const {nombre, asignatura, dia}=args;
-        const asignaturaID=await AsignaturaModel.findOne({asignatura});
+        const asignaturaID=await AsignaturaModel.findOne({nombre:asignatura});
         if(!asignaturaID)throw new Error("El nombre de la asignatura no existe")
         const Tarea={
             nombre,
@@ -73,7 +73,6 @@ export const Mutation={
         const nuevaTarea=await TareaModel.create(Tarea);
         return nuevaTarea;
     }
-
     ,
     ModificarAsignatura:async(_:unknown, args:{nombre:string, clase:string, horario:string, profesor:string, correo:string, parcial:string, final:string, asignatura:string}):Promise<AsignaturaModelType>=>{
         const {nombre, clase, horario, profesor, correo, parcial, final, asignatura}=args;
@@ -122,6 +121,7 @@ export const Mutation={
               });
         }
         return ExamenUP
-    }
+    },
+   
     
 }
