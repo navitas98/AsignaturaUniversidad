@@ -121,7 +121,5 @@ export const Mutation={
               });
         }
         return ExamenUP
-    },
-   
-    
+    }
 }
