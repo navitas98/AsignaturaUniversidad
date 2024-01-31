@@ -55,6 +55,12 @@ type Mutation{
     ModificarTema(nombre:String, ubicacion_tema:String, ubicacion_resumen:String, ubicacion_ejercicios:String, ubicacion_resolucion_ejercicios:String, asignatura:String, tema:String!):Tema!
     ModificarExamen(nombre:String, ano:Int, ubicacion_enunciado:String, ubicacion_resolucion:String, asignatura:String, examen:String!):Examen!
     ModificarTarea(nombre:String, asignatura:String, realizada:Boolean, dia:String, tarea:String!):Tarea!
+
+    BorrarAsignatura(nombre:String!):Asignatura!
+    BorrarTema(nombre:String!):Tema!
+    BorrarExamen(nombre:String!):Examen!
+    borrarPractica(nombre:String!):Practica!
+    borrarTareas:[Tarea!]!
 }
 type Query{
     test:String!
@@ -68,7 +74,7 @@ type Query{
     temas:[Tema!]!
     examenes:[Examen!]!
     practicas:[Practica!]!
-
+    tareas:[Tarea!]!
     horario(dia:String!):[Asignatura]!
 
 }

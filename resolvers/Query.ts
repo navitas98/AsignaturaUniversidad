@@ -47,5 +47,9 @@ export const Query={
         const practica=await PracticaModel.find().exec();
         return practica;
     },
+    tareas:async():Promise<TareaModelType[]>=>{
+        const tareas=await TareaModel.find().exec();
+        return tareas;
+    }
 
 }

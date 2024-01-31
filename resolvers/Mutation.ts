@@ -121,5 +121,27 @@ export const Mutation={
               });
         }
         return ExamenUP
+    }, ModificarTarea:async(_:unknown,args:{nombre:string,asignatura:string, realizada:boolean, dia:string, tarea:string }):Promise<TareaModelType>=>{
+        const {nombre, asignatura, realizada, dia, tarea}=args;
+        const tareaID= await TareaModel.findOne({nombre:tarea});
+        if(!tareaID)throw new Error("El nombre de la tarea no existe");
+        const TareaUP=await TareaModel.findByIdAndUpdate(
+            tareaID._id.toString(),
+            {nombre, asignatura, realizada, dia},
+            { new: true, runValidators: true }
+        )
+        if(!TareaUP){
+            throw new GraphQLError(`No existe ninguna tarea con este nombre: ${nombre}`, {
+                extensions: { code: "NOT_FOUND" },
+              });
+        }
+        return TareaUP
+    },
+    BorrarAsignatura:async(_:unknown, args:{nombre:string}):Promise<AsignaturaModelType>=>{
+        const asignaturaID=await AsignaturaModel.findOne({nombre:args.nombre});
+        if(!asignaturaID)throw new Error("El nombre de la asignatura no exoste")
+        const asignaturaE=await AsignaturaModel.findByIdAndDelete(asignaturaID._id)
+        if(!asignaturaE)throw new Error("error")
+        return asignaturaE
     }
 }
