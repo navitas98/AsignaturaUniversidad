@@ -76,6 +76,5 @@ type Query{
     practicas:[Practica!]!
     tareas:[Tarea!]!
     horario(dia:String!):[Asignatura]!
-
 }
 `

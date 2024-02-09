@@ -164,6 +164,13 @@ export const Mutation={
         const practicaB=await PracticaModel.findByIdAndDelete(practica._id);
         if(!practicaB)throw new Error("Error");
         return practicaB;
+    },
+    BorrarTarea:async(_:unknown, args:{nombre:string}):Promise<TareaModelType>=>{
+        const tarea=await TareaModel.findOne({nombre:args.nombre});
+        if(!tarea)throw new Error("El nombre de la tarea no existe");
+        const tareaB=await TareaModel.findByIdAndDelete(tarea._id);
+        if(!tareaB)throw new Error("error");
+        return tareaB;
     }
 
 }
